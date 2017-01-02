@@ -1,9 +1,9 @@
 # MultiManager
 
-# Description: MultiManager is a website that allows multimedia editors on The Harvard Crimson order, fulfill, pickup, 
-return, and update photography equipment. 
+## Description:
+MultiManager is a website that allows multimedia editors on The Harvard Crimson order, fulfill, pickup, return, and update photography equipment. 
 
-# Definitions:
+## Definitions:
 Multimedia = photography and video
 Pitch = photography/video assignment
 Comper = a trainee
@@ -17,7 +17,7 @@ flask run
 
 New users must register to create an account. Current users can login.
 
-# Compers/JEs:
+## Compers/JEs:
 A user can view the current inventory to see what is available. If a user in o photography assignment and they require
 equipment, they can go to the navigation bar and click "Request Equipment." This will link to a page with a form for 
 ordering equipment. Here, a user can type in a short description of the pitch they are doing. The user can then
@@ -31,7 +31,7 @@ the locker and are going to use it. After they are done with their pitch, the us
 the locker and on the website, they go to "My Orders" and click "Return." This automatically generates an email to the
 Exec notifying them the equipment has been returned. 
 
-# Execs:
+## Execs:
 Execs are notified via email when a new equipment request has been made. Execs can login into their account. Once logged
 in, they are also presented with an inventory of equipment. Execs, when fulfilling orders, can know at a glance what
 equipment is available or not. Execs can then go to the navigation bar and click "Fulfill Orders", which redirects them
