@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+Order History
+    <table border=2>
+        <tr>
+            <td>
+                Photographer
+            </td>
+            <td>
+                Pitch
+            </td>
+            <td>
+                Camera
+            </td>
+            <td>
+                Lens
+            </td>
+            <td>
+                Microphone
+            </td>
+            <td>
+                Tripod
+            </td>
+            <td>
+                Locker
+            </td>
+            <td>
+                Picked Up At
+            </td>
+            <td>
+                Returned At
+            </td>
+            <td>
+                Main Locker At
+            </td>
+            
+        </tr>
+        {% for item in orders %}
+         <tr>
+            <td>
+                {{ item['first'] }} {{ item['middle'] }} {{ item['last'] }}
+            </td>
+            <td>
+                {{ item['pitch_desc'] }}
+            <td>
+                {{ item['camera'] }}
+            </td>
+            <td>
+                {{ item['lens'] }}
+            </td>
+            <td>
+                {{ item['mic'] }}
+            </td>
+            <td>
+                {{ item['tripod'] }}
+            </td>
+            <td>
+                {{ item['lockernum'] }}
+            </td>
+            <td>
+                {{ item['pickedupat'] }}
+            </td>
+            <td>
+                {{ item['returnedat'] }}
+            </td>
+            <td>
+                {{ item['completedat'] }}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    
+    
+{% endblock %}

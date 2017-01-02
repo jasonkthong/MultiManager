@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Order Fulfillment
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+
+    <form action="{{ url_for('fulfillment') }}" method="post">
+        <fieldset>
+            What Equipment are you leaving?
+            <div class='form-group'>
+            {% if order[0]['camera'] == '1' %}
+                <select name="camera">
+                    <option class="form-control" value="none"> Select Camera</option>
+                    {% for item in cameras %}
+                    <option class="form-control" value="{{ item['code'] }}">{{ item['code'] }}: {{ item['name'] }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+            {% if order[0]['lens'] == '1' %}
+                <select name="lens">
+                    <option class="form-control" value="none"> Select Lens</option>
+                    {% for item in lenses %}
+                    <option class="form-control" value="{{ item['code'] }}">{{ item['code'] }}: {{ item['name'] }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+            {% if order[0]['mic'] == '1' %}
+                <select name="mic">
+                    <option class="form-control" value="none"> Select Microphone</option>
+                    {% for item in mics %}
+                    <option class="form-control" value="{{ item['code'] }}">{{ item['code'] }}: {{ item['name'] }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+            {% if order[0]['tripod'] == '1' %}
+                <select name="tri">
+                    <option class="form-control" value="none"> Select Tripod</option>
+                    {% for item in tripods %}
+                    <option class="form-control" value="{{ item['code'] }}">{{ item['code'] }}: {{ item['name'] }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+            </div>
+            What locker are you leaving the equipment in?<br>
+            <select name="locker">
+            <div class='form-group'>
+                <option class="form-control" value="none"> Select Locker</option>
+                {% for item in lockers %}
+                    <option class="form-control" value="{{ item['name'] }}">{{ item['name'] }}</option>
+                {% endfor %}
+            </div>
+            </select>
+            <br><br>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Done</button>
+            </div>
+        </fieldset>
+    </form>
+    
+{% endblock %}

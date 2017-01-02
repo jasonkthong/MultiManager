@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Request Equipment
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+
+    <form action="{{ url_for('order') }}" id=order method="post">
+        <fieldset>
+            <div class="form-group" style="align: center;">
+                What pitch is this for? <br>
+                <input autocomplete="off" autofocus class="form-control" name="pitch" placeholder="Describe the pitch" type="text"/>
+            </div>
+            <div class="form-group">
+                What equipment would you like?<br>
+                <input type="checkbox" name="camera" value="camera">Camera </input><br>
+                <input type="checkbox" name="lens" value="lens">Lens</input><br>
+                <input type="checkbox" name="mic" value="mic">Microphone</input><br>
+                <input type="checkbox" name="tripod" value="tripod">Tripod</input><br>
+            
+            </div>
+            By what time do you need to pick it up? <br> We'll try to have it in a locker by this time.<br>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="neededby" placeholder="Enter a Time" type="text"/>
+            </div>
+            Which Exec are you requesting this from?
+            <div class="form-group">
+                <select name="ex">
+                    <option class="form-control" value="none"> Select Exec</option>
+                    {% for exec in exec_list %}
+                    <option class="form-control" value="{{ exec['id'] }}"> {{ exec['first'] }} {{ exec['last'] }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+            I have read and agreed to the <a href="{{ url_for('orderterms') }}" target="_blank">terms and conditions</a> for borrowing equipment.
+                <input type="checkbox" name="orderterms" value="orderterms">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Request</button>
+            </div>
+        </fieldset>
+    </form>
+    
+        <script>
+
+            var form = document.getElementById('order');
+            form.onsubmit = function() {
+
+                if ((!form.camera.checked) && (!form.lens.checked) && (!form.mic.checked) && (!form.tripod.checked) && (!form.other.checked))
+                {
+                    alert('Please select equipment.');
+                    return false;
+                }
+                else if (!form.orderterms.checked)
+                {
+                    alert('You must agree to the terms and conditions.');
+                    return false;
+                }
+                
+                return true;
+
+            };
+
+        </script>
+        
+
+{% endblock %}

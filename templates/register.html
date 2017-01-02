@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<h3>Sign Up for a new account! </h3>
+    {% if error != None %}
+    Error: {{ error }}
+    {% endif %}
+    <form action="{{ url_for('register') }}" id=register method="post">
+        <fieldset>
+            <div class="form-group" style="align: center;">
+                <input autocomplete="off" autofocus class="form-control" name="first" placeholder="First Name" type="text"/><br>
+                <input autocomplete="off" autofocus class="form-control" name="middle" placeholder="Middle Initial" type="text"/><br>
+                <input autocomplete="off" autofocus class="form-control" name="last" placeholder="Last Name" type="text"/>
+            </div>
+            <!-- inspired by http://keithscode.com/tutorials/javascript/3-a-simple-javascript-password-validator.html -->
+            <div class="form-group">
+                <input class="form-control" name="username" placeholder="Username" id=username type="text"/>
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text"/><br>
+                <input autocomplete="off" autofocus class="form-control" name="phone" placeholder="Cell Number" type="text"/>
+            </div>
+            <!-- inspired by http://keithscode.com/tutorials/javascript/3-a-simple-javascript-password-validator.html -->
+            <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+            <div class="form-group">
+                <input class="form-control" name="password" id=password placeholder="Password" type="password"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password2" id=password2 placeholder="Re-Enter Password" type="password" onkeyup="PassValidation(); return false;"/>
+                <br>
+                <span id="confirmMessage" class="confirmMessage"></span>
+            </div>
+            <!-- http://www.w3schools.com/tags/tag_select.asp -->
+            <div class="form-group">
+                <select name="usertype">
+                    <option class="form-control" value="unchosen">Select Admin Level</option>
+                    <option class="form-control" value="Exec">Exec</option>
+                    <option class="form-control" value="Junior">Comper/JE</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="position">
+                    <option class="form-control" value="unchosen">Select Position</option>
+                    <option class="form-control" value="Chair">Chair</option>
+                    <option class="form-control" value="Editor-At-Large">Editor-At-Large</option>
+                    <option class="form-control" value="Comp Director">Comp Director</option>
+                    <option class="form-control" value="News Exec">News Exec</option>
+                    <option class="form-control" value="FM Exec">FM Exec</option>
+                    <option class="form-control" value="Sports Exec">Sports Exec</option>
+                    <option class="form-control" value="Arts Exec">Arts Exec</option>
+                    <option class="form-control" value="Junior Editor">Junior Editor</option>
+                    <option class="form-control" value="Comper">Comper</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="guard">
+                    <option class="form-control" value="unchosen">Select Guard</option>
+                    <option class="form-control" value="143">143</option>
+                    <option class="form-control" value="144">144</option>
+                    <option class="form-control" value="145">145</option>
+                    <option class="form-control" value="146">146</option>
+                </select>
+            </div>
+             <div class="form-group">
+            I have read and agreed to the <a href="{{ url_for('registerterms') }}" target="_blank">terms and conditions</a>.
+                <input type="checkbox" name="registerterms" value="registerterms">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Register</button>
+            </div>
+        </fieldset>
+    </form>
+   <script>
+
+            var form = document.getElementById('register');
+            form.onsubmit = function() {
+                
+                if (form.first.value == '')
+                {
+                    alert('You need to input your first name.');
+                    return false;
+                }
+                else if (form.last.value == '')
+                {
+                    alert('You need to input your last name.');
+                    return false;
+                }
+                else if (form.username.value == '')
+                {
+                    alert('You need to input a username.');
+                    return false;
+                }
+                else if (form.email.value == '')
+                {
+                    alert('You need to input your email.');
+                    return false;
+                }
+                else if (form.phone.value == '')
+                {
+                    alert('You need to input your phone number.');
+                    return false;
+                }
+               else if (form.password.value == '')
+                {
+                    alert('You need to input a password.');
+                    return false;
+                }
+                else if (form.password.value != form.password2.value)
+                {
+                    alert('The passwords do not match.');
+                    return false;
+                }
+                else if (!form.registerterms.checked)
+                {
+                    alert('You must agree to the terms and conditions.');
+                    return false;
+                }
+                return true;
+
+            };
+        
+
+        </script>
+    
+{% endblock %}

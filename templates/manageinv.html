@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Manage Inventory
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }} {{ session.middle}} {{ session.last }}!</h3>
+Manage Inventory
+    <table border=1>
+        <tr>
+            <td>
+                Equipment Code
+            </td>
+            <td>
+                Model
+            </td>
+            <td>
+                Notes
+            </td>
+            <td>
+                Available?
+            </td>
+            
+        </tr>
+        {% for item in inv_list %}
+         <tr>
+            <td>
+                {{ item['code'] }}
+            </td>
+            <td>
+                {{ item['name'] }}
+            </td>
+            <td>
+                {{ item['notes'] }}
+            </td>
+        
+                {% if item['status'] == 1 %}
+                <td class="available">
+                Yes
+                {% else %}
+                <td class="notavailable">
+                No
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+     <a href="{{ url_for('addeq') }}">Add a new item</a>
+    
+{% endblock %}

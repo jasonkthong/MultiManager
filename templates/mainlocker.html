@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirm Return
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+
+    <form action="{{ url_for('returned') }}" method="post">
+        <fieldset>
+            Click here to confirm return of:<br>
+            {% for item in equip %}
+                {{ item['code'] }}:  <br>
+            {% endfor %}
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Return</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

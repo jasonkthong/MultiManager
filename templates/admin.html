@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Crimson Equipment Admin
+{% endblock %}
+
+{% block main %}
+    
+    <h3>Executive Admin</h3>
+    <fieldset>
+    <div class="container">
+    <table border="1">
+        <tr>
+        <td><a href="{{ url_for('register') }}">Manage Users</a></td>
+        </tr>
+        <tr>
+        <td><a href="https://meganross-meganross.cs50.io/admin/equipment">Manage Equipment</a></td>
+        </tr>
+        <tr>
+        <td><a href="https://meganross-meganross.cs50.io/admin/equipment">See Analytics</a></td>
+        </tr>
+    </table>
+    </div>
+    </fieldset>
+    
+{% endblock %}

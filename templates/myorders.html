@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Orders
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+You have made the following orders:
+    <table border=2>
+        <tr>
+            <td>
+                Pitch
+            </td>
+            <td>
+                Needed By
+            </td>
+            <td>
+                Camera
+            </td>
+            <td>
+                Lens
+            </td>
+            <td>
+                Mic
+            </td>
+            <td>
+                Tripod
+            </td>
+            <td>
+                Fulfilled?
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            
+        </tr>
+        {% for item in orders %}
+         <tr>
+            <td>
+                {{ item['pitch_desc'] }}
+            </td>
+            <td>
+                {{ item['neededby'] }}
+            <td>
+                {{ item['camera'] }}
+            </td>
+            <td>
+                {{ item['lens'] }}
+            </td>
+            <td>
+                {{ item['mic'] }}
+            </td>
+            <td>
+                {{ item['tripod'] }}
+            </td>
+            
+                {% if item['fulfilled'] == '1' %}
+                <td class="available">
+                    Yes
+                {% else %}
+                <td class="notavailable">
+                    No
+                </td>
+                {% endif %}
+            </td>
+            {% if item['fulfilled'] == '1' %}
+                <td>
+                <a href="http://crimson-thong1.c9users.io/pickup?q={{ item['order_id'] }}">
+                Pickup
+                </a>
+                {% else %}
+                <td>
+                    Pickup
+                </td>
+                {% endif %}
+                
+            </td>
+            {% if item['fulfilled'] == '1' %}
+                <td>
+                <a href="http://crimson-thong1.c9users.io/return?q={{ item['order_id'] }}">
+                Return
+                </a>
+                {% else %}
+                <td>
+                    Return
+                </td>
+                {% endif %}
+                
+            </td>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+    
+    
+{% endblock %}

@@ -1,0 +1,29 @@
+Design
+
+This website is made using HTML, CSS, and JavaScript in the front end, and Python and SQL in the back end. 
+
+
+Front End Design:
+Since we are building a website, we decided to use HTML, CSS and JavaScript for the front end since they are the most
+common languages for web programming. The website is designed to be as user-friendly as possible. This is necessary since users
+from all experience levels will be using the site. An item's availability is color-coded in the table to easily dist
+inguish its status at a glance. This is implemented using HTML and CSS. When registering, users will receive color and
+well as text feedback indicating if the passwords they have entered match. This is implemented using JavaScript and HTML.
+Bootstrap was also used since the website needs to be usable on mobile devices. Due to the time-sensitivity of journalism, 
+users need to be able to order and fulfill orders on the go. Alerts were implemented using JavaScript and Flask's flash
+messages. This is to give users visual feedback on actions completed or forbidden.
+
+
+Back End Design:
+
+We used Python, Flask and SQL because we had experience using it in Pset 7 and also because it suited the needs of the website, in
+particular access to a reliable database framework.  The majority of the functions in the application.py file make use of db.execute to
+make SQL queries, accessing the database that underpins the website in order to update, insert and view the contents of the inventory
+of camera equipment and the users of the website.  We decided we needed to have two different classes of users, Execs and Juniors, because
+the team we work on divides access to the equipment along those lines.  Flask's session variables made this very straightforward to 
+implement.  
+Python also allowed us to very easily send emails.  
+Emails can be sent using Python's smtplib library. Emails are important to provide real-time notfication of when an order is made & 
+an order has been fulfilled so that everyone is kept in the loop.  Smtplib also supports secure email services which is important
+because the @thecrimson.com emails run on Google servers and as such require SSL encryption on port 465.
+

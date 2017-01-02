@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+The following orders are waiting for your action:
+    <table border=2>
+        <tr>
+            <td>
+                Comper/JE
+            </td>
+            <td>
+                Phone
+            </td>
+            <td>
+                Pitch
+            </td>
+            <td>
+                Needed By
+            </td>
+            <td>
+                Camera
+            </td>
+            <td>
+                Lens
+            </td>
+            <td>
+                Mic
+            </td>
+            <td>
+                Tripod
+            </td>
+            
+        </tr>
+        {% for item in order %}
+        
+         <tr>
+            <td>
+                <a href = "http://crimson-thong1.c9users.io/fulfillment?q={{ item['order_id'] }}">{{ item['first'] }} {{ item['last'] }}</a>
+            </td>
+            <td>
+                {{ item['phone'] }}
+            </td>
+            <td>
+                {{ item['pitch_desc'] }}
+            </td>
+            <td>
+                {{ item['neededby'] }}
+            </td>
+                {% if item['camera'] == '1' %}
+                <td class="available">
+                Yes
+                {% else %}
+                <td class="notavailable">
+                No
+                {% endif %}
+            </td>
+            {% if item['lens'] == '1' %}
+                <td class="available">
+                Yes
+                {% else %}
+                <td class="notavailable">
+                No
+                {% endif %}
+            </td>
+            {% if item['mic'] == '1' %}
+                <td class="available">
+                Yes
+                {% else %}
+                <td class="notavailable">
+                No
+                {% endif %}
+            </td>
+            {% if item['tripod'] == '1' %}
+                <td class="available">
+                Yes
+                {% else %}
+                <td class="notavailable">
+                No
+                {% endif %}
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+    
+    
+{% endblock %}

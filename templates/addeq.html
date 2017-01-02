@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Item
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+<br><h4>Add New Item</h4>
+<form action="{{ url_for('addeq') }}" id=addeq method="post">
+        <fieldset>
+            
+            <div class="form-group">
+                Type:
+                <select name="type" class="selectpicker">
+                    <option class="form-control" value="unchosen">Select</option>
+                    <option class="form-control" value="camera">Camera</option>
+                    <option class="form-control" value="lens">Lens</option>
+                    <option class="form-control" value="mic">Microphone</option>
+                    <option class="form-control" value="tripod">Tripod</option>
+                </select>
+            </div>
+            
+            <div class="form-group row">
+                Name:
+                <input autocomplete="off" autofocus class="form-control" name="name" placeholder="E.g. Nikon D300" type="text"/>
+            </div>
+            <div class="form-group row">
+                Code:
+                <input autocomplete="off" autofocus class="form-control" name="code" placeholder="E.g. C1, L2 etc." type="text"/>
+            </div>
+            <div class="form-group row">
+                Notes:
+                <input autocomplete="off" autofocus class="form-control" name="notes" placeholder="E.g. Telephoto" type="text"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Add</button>
+            </div>
+        </fieldset>
+    </form>
+    <script>
+    
+     var form = document.getElementById('addeq');
+            form.onsubmit = function() {
+                
+                if (form.type.value == 'unchosen')
+                {
+                    alert('Select Equipment Type');
+                    return false;
+                }
+                else if (form.name.value == 'unchosen')
+                {
+                    alert('Enter A Name');
+                    return false;
+                }
+                else if (form.code.value == '')
+                {
+                    alert('Enter A Code');
+                    return false;
+                }
+
+            };
+    </script>
+        
+{% endblock %}

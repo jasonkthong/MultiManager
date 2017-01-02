@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirm Pickup
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+
+    <form action="{{ url_for('pickup') }}" method="post">
+        <fieldset>
+            Click here to confirm pickup of:<br>
+            {% for item in equip %}
+                item <br>
+            {% endfor %}
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Pickup</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

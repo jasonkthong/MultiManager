@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dayslot
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+<h4>Please confirm the following equipment is returned to the Main Locker:</h4>
+
+<table border=2>
+    <tr>
+        <td>
+            Item
+        </td>
+        <td>
+            Code
+        </td>
+        <td>
+            Name
+        </td>
+        <td>
+            Who Had It Last?
+        </td>
+        <td>
+            Phone Number
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    {% for item in equipment %}
+    <tr>
+        <td>
+            {{ item['type'] }}
+        </td>
+        <td>
+            {{ item['code'] }}
+        </td>
+        <td>
+            {{ item['name'] }}
+        </td>
+        <td>
+            {{ item['first'] }} {{ item['middle'] }} {{ item['last'] }}
+        </td>
+        <td>
+            {{ item['phone'] }}
+        </td>
+        <td>
+            {% if item['status'] != '1' %}
+            <a href="http://crimson-thong1.c9users.io/mainlocker?q={{ item['code'] }}">
+                Return To Main Locker
+            </a>
+            {% else %}
+            Complete
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+        
+<br>
+<h4>Free Up Empty Lockers</h4>
+<table border=2>
+    <tr>
+        <td>
+            Locker
+        </td>
+        <td>
+            Code
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    {% for item in lockers %}
+        <td>
+            {{ item['name'] }}
+        </td>
+        <td>
+            {{ item['code'] }}
+        </td>
+        <td>
+            <a href="http://crimson-thong1.c9users.io/freeup?q={{ item['name'] }}">
+                Free
+        </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<h4>Close Today's Orders</h4>
+    <table border=2>
+        <tr>
+            <td>
+                Order Id
+            </td>
+            <td>
+                Photographer
+            </td>
+            <td>
+                Pitch
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        {% for item in openorders %}
+        <tr>
+            <td>
+                {{ item['order_id'] }}
+            </td>
+            <td>
+                {{ item['first'] }}
+            </td>
+            <td>
+                {{ item['pitch_desc'] }}
+            </td>
+            <td>
+                <a href="http://crimson-thong1.c9users.io/complete?q={{ item['order_id'] }}">Close Order</a>
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+{% endblock %}

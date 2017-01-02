@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+<!-- Bootstrap Grids: https://v4-alpha.getbootstrap.com/layout/grid/ -->
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-6">
+        <h4>Inventory</h4>
+      <table border=2>
+        <tr>
+            <td>
+                Equipment Code
+            </td>
+            <td>
+                Model
+            </td>
+            <td>
+                Notes
+            </td>
+            <td>
+                Available?
+            </td>
+            
+        </tr>
+        {% for item in inv %}
+         <tr>
+            <td>
+                {% if session.role == 'Exec' %}
+                <a href="http://crimson-thong1.c9users.io/moditem?q={{ item['code'] }}">{{ item['code'] }}</a>
+                {% else %}
+                {{ item['code'] }}
+                {% endif %}
+            </td>
+            <td>
+                {{ item['name'] }}
+            </td>
+            <td>
+                {{ item['notes'] }}
+            </td>
+        
+                {% if item['status'] == 1 %}
+                <td class="available">
+                Yes
+                {% else %}
+                <td class="notavailable">
+                No
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    {% if session.role == 'Exec' %}
+    <a href="{{ url_for('addeq') }}">Add a new item</a><br>
+    {% endif %}
+    </div>
+    <div class="col-lg-6">
+      <h4>Contact List</h4>
+      <table border=2>
+      <tr>
+          <td>Name</td>
+          <td>Position</td>
+          <td>Guard</td>
+          <td>Phone</td>
+          <td>Email</td>
+      </tr>
+      {% for person in people %}
+      <tr>
+          <td>{{ person['first'] }} {{ person['middle'] }} {{ person ['last'] }}</td>
+          <td>{{ person['position'] }}</td>
+          <td>{{ person['guard'] }}</td>
+          <td>{{ person['phone'] }}</td>
+          <td>{{ person['email'] }}</td>
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" class="mydiv">
+    
+     
+</div>  
+
+
+{% endblock %}

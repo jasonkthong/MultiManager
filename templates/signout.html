@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign Out
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+
+    <form action="{{ url_for('signout') }}" method="post">
+        <fieldset>
+            <div class="form-group" style="align: center;">
+                What pitch is this for? <br>
+                <input autocomplete="off" autofocus class="form-control" name="pitch" placeholder="Describe the pitch" type="text"/>
+            </div>
+            <div class="form-group">
+                Select From Available Equipment:
+                <br>
+                <select name = "camera">
+                <option class="form-control" value="none">Select Camera</option>
+                {% for item in cameras %}
+                <option class = "form-control" value="{{ item['code'] }}"> {{ item['code'] }} : {{ item['name'] }}</option>
+                {% endfor %}
+                </select>
+                <select name = "lens">
+                <option class="form-control" value="none">Select Lens</option>
+                {% for item in lens %}
+                <option class = "form-control" value="{{ item['code'] }}"> {{ item['code'] }} : {{ item['name'] }}</option>
+                {% endfor %}
+                </select>
+                <select name = "tripod">
+                <option class="form-control" value="none">Select Tripod</option>
+                {% for item in tripod %}
+                <option class = "form-control" value="{{ item['code'] }}"> {{ item['code'] }} : {{ item['name'] }}</option>
+                {% endfor %}
+                </select>
+                <select name = "mic">
+                <option class="form-control" value="none">Select Mic</option>
+                {% for item in mic %}
+                <option class = "form-control" value="{{ item['code'] }}"> {{ item['code'] }} : {{ item['name'] }}</option>
+                {% endfor %}
+                </select>
+            
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Sign Out</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

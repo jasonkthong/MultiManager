@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Modify Item
+{% endblock %}
+
+{% block main %}
+<h3>Welcome {{ session.first }}!</h3>
+<br><h4>Update Item </h4>
+<form action="{{ url_for('moditem') }}" method="post">
+        <fieldset>
+            Updating {{ equipment[0]["type"].capitalize() }} {{ equipment[0]["code"] }}: {{ equipment[0]["name"] }}<br><br>
+            <div class="form-group">
+                Type:
+                <select name="type">
+                    <option class="form-control" value="{{ equipment[0]['type'] }}">Select</option>
+                    <option class="form-control" value="camera">Camera</option>
+                    <option class="form-control" value="lens">Lens</option>
+                    <option class="form-control" value="mic">Microphone</option>
+                    <option class="form-control" value="tripod">Tripod</option>
+                </select>
+            </div>
+            
+            <div class="form-group row">
+                Name:
+                <input autocomplete="off" autofocus class="form-control" name="name" placeholder="{{ equipment[0]['name'] }}" type="text"/>
+            </div>
+            <div class="form-group row">
+                Notes:
+                <input autocomplete="off" autofocus class="form-control" name="notes" placeholder="{{ equipment[0]['notes'] }}" type="text"/>
+            </div>
+            <div class="form-group row">
+                Current Status:
+                <select name="status">
+                    <option class="form-control" value="unchosen">Select</option>
+                    <option class="form-control" value="1">Available</option>
+                    <option class="form-control" value="0">Unavailable</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Update</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
